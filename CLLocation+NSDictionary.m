@@ -55,10 +55,10 @@
     return [self initWithCoordinate:coordinate altitude:altitude horizontalAccuracy:hAccuracy verticalAccuracy:vAccuracy timestamp:timestamp];
 }
 
-- (id)initWithJSON:(NSString*)json {
-    NSDictionary *dict = [json objectFromJSONString];
-    return [self initWithDictionary:dict];
-}
+//- (id)initWithJSON:(NSString*)json {
+//    NSDictionary *dict = [json objectFromJSONString];
+//    return [self initWithDictionary:dict];
+//}
 
 - (NSDictionary*)dictionaryRepresentation {
     NSMutableDictionary* dictRep = [NSMutableDictionary dictionary];
@@ -66,13 +66,11 @@
     [dictRep setObject:[NSNumber numberWithDouble:self.coordinate.latitude] forKey:@"latitude"];
     [dictRep setObject:[NSNumber numberWithDouble:self.coordinate.longitude] forKey:@"longitude"];
     
-    //   Using reference date since PHP and MySQL use Jan 1st 2001
-    [dictRep setObject:[NSNumber numberWithDouble:[self.timestamp timeIntervalSinceReferenceDate]] forKey:@"timestamp"];
+    [dictRep setObject:[self.timestamp description] forKey:@"timestamp"];
     [dictRep setObject:[NSNumber numberWithDouble:self.altitude] forKey:@"altitude"];
     
-    //  Not Including these, only to lighten up HTTP requests
-    //  [dictRep setObject:[NSNumber numberWithDouble:self.course] forKey:@"course"];
-    //  [dictRep setObject:[NSNumber numberWithDouble:self.speed] forKey:@"speed"];
+    [dictRep setObject:[NSNumber numberWithDouble:self.course] forKey:@"course"];
+    [dictRep setObject:[NSNumber numberWithDouble:self.speed] forKey:@"speed"];
     
     [dictRep setObject:[NSNumber numberWithDouble:self.horizontalAccuracy] forKey:@"horizontalAccuracy"];
     [dictRep setObject:[NSNumber numberWithDouble:self.verticalAccuracy] forKey:@"verticalAccuracy"];
@@ -80,10 +78,10 @@
     return dictRep;
 }
 
-- (NSString*) JSONString {
-    NSDictionary *dict = [self dictionaryRepresentation];
-    return [dict JSONString];
-}
+//- (NSString*) JSONString {
+//    NSDictionary *dict = [self dictionaryRepresentation];
+//    return [dict JSONString];
+//}
 
 @end
 

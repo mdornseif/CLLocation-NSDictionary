@@ -8,12 +8,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "JSONKit.h"
+//#import "JSONKit.h"
 
 @interface CLLocation (NSDictionary)
 
 - (id)initWithDictionary:(NSDictionary*)dictRep;
 - (NSDictionary*)dictionaryRepresentation;
-- (NSString*) JSONString;
+//- (NSString*) JSONString;
 
 @end
