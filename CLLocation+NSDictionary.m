@@ -62,11 +62,15 @@
 
 - (NSDictionary*)dictionaryRepresentation {
     NSMutableDictionary* dictRep = [NSMutableDictionary dictionary];
-    
+    NSDateFormatter *df_utc = [[NSDateFormatter alloc] init];
+    [df_utc setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [df_utc setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+
+
     [dictRep setObject:[NSNumber numberWithDouble:self.coordinate.latitude] forKey:@"latitude"];
     [dictRep setObject:[NSNumber numberWithDouble:self.coordinate.longitude] forKey:@"longitude"];
     
-    [dictRep setObject:[self.timestamp description] forKey:@"timestamp"];
+    [dictRep setObject: [df_utc stringFromDate:self.timestamp] forKey:@"timestamp"];
     [dictRep setObject:[NSNumber numberWithDouble:self.altitude] forKey:@"altitude"];
     
     [dictRep setObject:[NSNumber numberWithDouble:self.course] forKey:@"course"];
