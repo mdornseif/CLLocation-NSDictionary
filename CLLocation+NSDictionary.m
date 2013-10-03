@@ -10,7 +10,7 @@
 @implementation CLLocation (NSDictionary)
 
 - (id)initWithDictionary:(NSDictionary*)dictRep {
-    CLLocationCoordinate2D coordinate = {};
+    CLLocationCoordinate2D coordinate = {.latitude=0, .longitude=0};
     
     CLLocationAccuracy hAccuracy = -1.0;
     if ([dictRep objectForKey:@"latitude"] && [dictRep objectForKey:@"longitude"]) {
